@@ -1,3 +1,5 @@
+* screenshots
+[[http://ojlmcfp94.bkt.clouddn.com/emacs-interface.png]]
 * Features
 - Efficient. Emacs starts up in *one second*
 - Robust. Emacs will never crash after a full package upgrade. You can install packages without network
