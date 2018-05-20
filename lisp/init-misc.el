@@ -178,7 +178,10 @@
 
 ;; {{ which-key-mode
 (local-require 'which-key)
-(setq which-key-allow-imprecise-window-fit t) ; performance
+(setq which-key-popup-type 'side-window)
+(setq which-key-side-window-location 'bottom)
+(setq which-key-side-window-max-width 0.33)
+;(setq which-key-allow-imprecise-window-fit t) ; performance
 (setq which-key-separator ":")
 (which-key-mode 1)
 ;; }}

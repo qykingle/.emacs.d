@@ -1,12 +1,9 @@
-;(setq initial-frame-alist (quote ((fullscreen . maximized))))
 (set-face-attribute 'default nil :height 220)
-
 
 ;;tern
 (add-hook 'js2-mode-hook (lambda ()
                            (tern-mode)
                            (company-mode)))
-
 
 ;; or if you want to set it globaly
 (setq-default line-spacing 0.3)
@@ -16,11 +13,8 @@
 (setq helm-github-stars-username "qykingle")
 
 (setq helm-github-stars-refetch-time 0.5)
-
 ;;youdaoyun
 (setq url-automatic-caching t)
-
-(global-hungry-delete-mode)
 
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 
@@ -43,7 +37,6 @@
         regexp-history)
   (call-interactively 'occur))
 (global-set-key (kbd "M-s o") 'occur-dwim)
-
 
 (add-hook 'occur-mode-hook
           (lambda ()
@@ -77,7 +70,6 @@
       evil-operator-state-tag (propertize "[O]" 'face '((:background "purple"))))
 
 ;; 简化 major-mode 的名字，替换表中没有的显示原名
-
 (defun codefalling//simplify-major-mode-name ()
   "Return simplifyed major mode name"
   (let* ((major-name (format-mode-line "%m"))
