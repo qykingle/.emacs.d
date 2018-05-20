@@ -433,7 +433,6 @@ If the character before and after CH is space or tab, CH is NOT slash"
        "-" 'decrease-default-font-height ; GUI emacs only
        "bf" 'beginning-of-defun
        "bu" 'backward-up-list
-       "bb" 'back-to-previous-buffer
        "ef" 'end-of-defun
        "mf" 'mark-defun
        "em" 'erase-message-buffer
@@ -558,7 +557,6 @@ If the character before and after CH is space or tab, CH is NOT slash"
                 ;; grep current file name base
                 (counsel-etags-grep (format "%s" (file-name-nondirectory buffer-file-name))))))
        "dd" 'counsel-etags-grep-symbol-at-point
-       "xc" 'save-buffers-kill-terminal
        "rr" 'my-counsel-recentf
        "rh" 'counsel-yank-bash-history ; bash history command => yank-ring
        "rd" 'counsel-recent-directory
@@ -572,10 +570,6 @@ If the character before and after CH is space or tab, CH is NOT slash"
        "sec" 'string-edit-conclude
        "sea" 'string-edit-abort
        "xe" 'eval-last-sexp
-       "x0" 'delete-window
-       "x1" 'delete-other-windows
-       "x2" 'my-split-window-vertically
-       "x3" 'my-split-window-horizontally
        "s2" 'ffip-split-window-vertically
        "s3" 'ffip-split-window-horizontally
        "rw" 'rotate-windows
@@ -626,23 +620,12 @@ If the character before and after CH is space or tab, CH is NOT slash"
        "bj" 'buf-move-down
        "bh" 'buf-move-left
        "bl" 'buf-move-right
-       "0" 'select-window-0
-       "1" 'select-window-1
-       "2" 'select-window-2
-       "3" 'select-window-3
-       "4" 'select-window-4
-       "5" 'select-window-5
-       "6" 'select-window-6
-       "7" 'select-window-7
-       "8" 'select-window-8
-       "9" 'select-window-9
        "xm" 'my-M-x
        "xx" 'er/expand-region
        "xf" 'ido-find-file
        "xb" 'ivy-switch-buffer-by-pinyin
        "xh" 'mark-whole-buffer
        "xk" 'ido-kill-buffer
-       "xs" 'save-buffer
        "xz" 'switch-to-shell-or-ansi-term
        "vm" 'vc-rename-file-and-buffer
        "vc" 'vc-copy-file-and-rename-buffer
@@ -672,6 +655,24 @@ If the character before and after CH is space or tab, CH is NOT slash"
 ;; {{ Use `SPC` as leader key
 ;; all keywords arguments are still supported
 (nvmap :prefix "SPC"
+       "bb" 'back-to-previous-buffer
+       "kz" 'reveal-in-osx-finder
+       "ky" 'youdao-dictionary-search-at-point
+       "1" 'select-window-1
+       "2" 'select-window-2
+       "3" 'select-window-3
+       "4" 'select-window-4
+       "5" 'select-window-5
+       "6" 'select-window-6
+       "7" 'select-window-7
+       "8" 'select-window-8
+       "9" 'select-window-9
+       "wd" 'delete-window
+       "w-" 'my-split-window-vertically
+       "wm" 'delete-other-windows
+       "w/" 'my-split-window-horizontally
+       "SPC" 'counsel-M-x
+       "rr" 'my-ranger
        "ee" 'my-swap-sexps
        "pc" 'my-dired-redo-from-commands-history
        "cc" 'my-dired-redo-last-command
@@ -781,7 +782,9 @@ If the character before and after CH is space or tab, CH is NOT slash"
        ;;      (set-face-attribute 'avy-lead-face-0 nil :foreground "black")
        ;;      (set-face-attribute 'avy-lead-face-0 nil :background "#f86bf3")))
        ";" 'avy-goto-char-2
-       "w" 'avy-goto-word-or-subword-1
+       "q" 'save-buffers-kill-terminal
+       "w" 'save-buffer
+       "gw" 'avy-goto-word-or-subword-1
        "a" 'avy-goto-char-timer
        "db" 'sdcv-search-pointer ; in buffer
        "dt" 'sdcv-search-input+ ; in tip
@@ -830,7 +833,6 @@ If the character before and after CH is space or tab, CH is NOT slash"
   (add-hook 'post-command-hook
             (lambda ()
               (let ((color (cond ((minibufferp) default-color)
-                                 ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
                                  (t default-color))))
                 (set-face-background 'mode-line (car color))
                 (set-face-foreground 'mode-line (cdr color))))))

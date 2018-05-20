@@ -1,16 +1,66 @@
-(setq initial-frame-alist (quote ((fullscreen . maximized))))
-(set-face-attribute 'default nil :height 200)
+;(setq initial-frame-alist (quote ((fullscreen . maximized))))
+(set-face-attribute 'default nil :height 220)
+
+(setq ring-bell-function 'ignore)
+
+;;youdaoyun
+(setq url-automatic-caching t)
+
+(global-hungry-delete-mode)
+
+(add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
+
+(global-hl-line-mode 1)
+
+(set-language-environment "UTF-8")
+
+(setq dired-dwin-target 1)
+
+(defun occur-dwim ()
+  "Call `occur' with a sane default."
+  (interactive)
+  (push (if (region-active-p)
+            (buffer-substring-no-properties
+             (region-beginning)
+             (region-end))
+          (let ((sym (thing-at-point 'symbol)))
+            (when (stringp sym)
+              (regexp-quote sym))))
+        regexp-history)
+  (call-interactively 'occur))
+(global-set-key (kbd "M-s o") 'occur-dwim)
+
+
+(add-hook 'occur-mode-hook
+          (lambda ()
+            (evil-add-hjkl-bindings occur-mode-map 'emacs
+              (kbd "/")       'evil-search-forward
+              (kbd "n")       'evil-search-next
+              (kbd "N")       'evil-search-previous
+              (kbd "C-d")     'evil-scroll-down
+              (kbd "C-u")     'evil-scroll-up
+              )))
+
+(with-eval-after-load 'golden-ratio
+  (add-to-list 'golden-ratio-exclude-modes "ranger-mode"))
+(require 'golden-ratio)
+(golden-ratio-mode 1)
+
+(defadvice select-window-by-number
+              (after golden-ratio-resize-window activate)
+            (golden-ratio) nil)
+
 
 (when (or (display-graphic-p)
           (string-match-p "256color"(getenv "TERM")))
   (load-theme 'spacemacs-dark t))
-
-(setq evil-normal-state-tag   (propertize "[Normal]" 'face '((:background "#ABD78A" :foreground "black")))
-      evil-emacs-state-tag    (propertize "[Emacs]" 'face '((:background "orange" :foreground "black")))
-      evil-insert-state-tag   (propertize "[Insert]" 'face '((:background "#82AFD6") :foreground "black"))
-      evil-motion-state-tag   (propertize "[Motion]" 'face '((:background "blue") :foreground "white"))
-      evil-visual-state-tag   (propertize "[Visual]" 'face '((:background "#DAAFD6" :foreground "black")))
-      evil-operator-state-tag (propertize "[Operator]" 'face '((:background "purple"))))
+;;Normal Emacs Insert Motion Visual Operator
+(setq evil-normal-state-tag   (propertize "[N]" 'face '((:background "#ABD78A" :foreground "black")))
+      evil-emacs-state-tag    (propertize "[E]" 'face '((:background "orange" :foreground "black")))
+      evil-insert-state-tag   (propertize "[I]" 'face '((:background "#82AFD6") :foreground "black"))
+      evil-motion-state-tag   (propertize "[M]" 'face '((:background "blue") :foreground "white"))
+      evil-visual-state-tag   (propertize "[V]" 'face '((:background "#DAAFD6" :foreground "black")))
+      evil-operator-state-tag (propertize "[O]" 'face '((:background "purple"))))
 
 ;; 简化 major-mode 的名字，替换表中没有的显示原名
 

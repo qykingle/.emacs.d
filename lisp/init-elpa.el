@@ -6,6 +6,10 @@
 ;; Feel free to add more packages!
 (defvar melpa-include-packages
   '(ace-mc
+    youdao-dictionary
+    ranger
+    reveal-in-osx-finder
+    hungry-delete
     color-theme ; emacs24 need this package
     ace-window ; lastest stable is released on year 2014
     auto-package-update
@@ -28,6 +32,7 @@
     ;; swiper
     ;; }}
     spacemacs-theme
+    golden-ratio
     moe-theme
     ample-theme
     molokai-theme
@@ -115,8 +120,8 @@
         ;; ;; ("org" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
         ;; }}
 
-        ("melpa" . "https://melpa.org/packages/")
-        ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("melpa" . "http://elpa.emacs-china.org/melpa/")
+        ("melpa-stable" . "http://elpa.zilongshanren.com/melpa-stable/")
         ))
 
 ;; Un-comment below line if you follow "Install stable version in easiest way"
@@ -183,6 +188,11 @@
 ;; Fire up package.el and ensure the following packages are installed.
 ;;------------------------------------------------------------------------------
 
+(require-package 'golden-ratio)
+(require-package 'reveal-in-osx-finder)
+(require-package 'youdao-dictionary)
+(require-package 'hungry-delete)
+(require-package 'ranger)
 (require-package 'async)
 (require-package 'dash) ; required by string-edit
 ; color-theme 6.6.1 in elpa is buggy
