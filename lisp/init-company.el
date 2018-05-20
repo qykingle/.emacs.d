@@ -66,6 +66,14 @@
     (add-to-list 'company-backends 'company-ispell)
     (message "company-ispell enabled!"))))
 
+(add-to-list 'company-backends 'company-tern)
+
+(setq auto-mode-alist
+      (append
+       '(("\\.js\\'" . js2-mode))
+       '(("\\.html\\'" . web-mode))
+       auto-mode-alist))
+
 (defun company-ispell-setup ()
   ;; @see https://github.com/company-mode/company-mode/issues/50
   (when (boundp 'company-backends)

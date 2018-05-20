@@ -468,8 +468,6 @@ If the character before and after CH is space or tab, CH is NOT slash"
        "kn" 'find-file-with-similar-name ; ffip v5.3.1
        "fd" 'find-directory-in-project-by-selected
        "trm" 'get-term
-       "tff" 'toggle-frame-fullscreen
-       "tfm" 'toggle-frame-maximized
        "ti" 'fastdef-insert
        "th" 'fastdef-insert-from-history
        ;; "ci" 'evilnc-comment-or-uncomment-lines
@@ -655,8 +653,11 @@ If the character before and after CH is space or tab, CH is NOT slash"
 ;; {{ Use `SPC` as leader key
 ;; all keywords arguments are still supported
 (nvmap :prefix "SPC"
+       "fm" 'toggle-frame-fullscreen
+       "ff" 'toggle-frame-maximized
        "bb" 'back-to-previous-buffer
        "kz" 'reveal-in-osx-finder
+       "kg" 'helm-github-stars
        "ky" 'youdao-dictionary-search-at-point
        "1" 'select-window-1
        "2" 'select-window-2

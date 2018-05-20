@@ -14,63 +14,63 @@
 
 (defvar best-gc-cons-threshold 4000000 "Best default gc threshold value. Should't be too big.")
 ;; don't GC during startup to save time
-(setq gc-cons-threshold most-positive-fixnum)
+(             setq gc-cons-threshold most-positive-fixnum)
 
-(setq emacs-load-start-time (current-time))
+             (setq emacs-load-start-time (current-time))
 
-;; {{ emergency security fix
-;; https://bugs.debian.org/766397
-(eval-after-load "enriched"
-  '(defun enriched-decode-display-prop (start end &optional param)
-     (list start end)))
-;; }}
+                     ;; {{ emergency security fix
+                  ;; https://bugs.debian.org/766397
+                     (eval-after-load "enriched"
+   '(defun enriched-decode-display-prop (start end &optional param)
+                          (list start end)))
+                                ;; }}
 ;;----------------------------------------------------------------------------
-;; Which functionality to enable (use t or nil for true and false)
+  ;; Which functionality to enable (use t or nil for true and false)
 ;;----------------------------------------------------------------------------
-(setq *is-a-mac* (eq system-type 'darwin))
-(setq *win64* (eq system-type 'windows-nt) )
-(setq *cygwin* (eq system-type 'cygwin) )
+              (setq *is-a-mac* (eq system-type 'darwin))
+             (setq *win64* (eq system-type 'windows-nt) )
+              (setq *cygwin* (eq system-type 'cygwin) )
 (setq *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
 (setq *unix* (or *linux* (eq system-type 'usg-unix-v) (eq system-type 'berkeley-unix)) )
 (setq *emacs24* (and (not (featurep 'xemacs)) (or (>= emacs-major-version 24))) )
 (setq *emacs25* (and (not (featurep 'xemacs)) (or (>= emacs-major-version 25))) )
-(setq *no-memory* (cond
-                   (*is-a-mac*
-                    (< (string-to-number (nth 1 (split-string (shell-command-to-string "sysctl hw.physmem")))) 4000000000))
-                   (*linux* nil)
-                   (t nil)))
+                       (setq *no-memory* (cond
+                             (*is-a-mac*
+(< (string-to-number (nth 1 (split-string (shell-command-to-string "sysctl hw.physmem")))) 4000000000))
+                            (*linux* nil)
+                              (t nil)))
 
-;; emacs 24.3-
+                            ;; emacs 24.3-
 (setq *emacs24old*  (or (and (= emacs-major-version 24) (= emacs-minor-version 3))
-                        (not *emacs24*)))
+                          (not *emacs24*)))
 
 ;; @see https://www.reddit.com/r/emacs/comments/55ork0/is_emacs_251_noticeably_slower_than_245_on_windows/
-;; Emacs 25 does gc too frequently
-(when *emacs25*
-  ;; (setq garbage-collection-messages t) ; for debug
-  (setq gc-cons-threshold (* 64 1024 1024) )
-  (setq gc-cons-percentage 0.5)
-  (run-with-idle-timer 5 t #'garbage-collect))
+                  ;; Emacs 25 does gc too frequently
+                           (when *emacs25*
+         ;; (setq garbage-collection-messages t) ; for debug
+              (setq gc-cons-threshold (* 64 1024 1024) )
+                    (setq gc-cons-percentage 0.5)
+             (run-with-idle-timer 5 t #'garbage-collect))
 
-(defmacro local-require (pkg)
-  `(load (file-truename (format "~/.emacs.d/site-lisp/%s/%s" ,pkg ,pkg))))
+                    (defmacro local-require (pkg)
+`(load (file-truename (format "~/.emacs.d/site-lisp/%s/%s" ,pkg ,pkg))))
 
-(defmacro require-init (pkg)
-  `(load (file-truename (format "~/.emacs.d/lisp/%s" ,pkg))))
+                     (defmacro require-init (pkg)
+     `(load (file-truename (format "~/.emacs.d/lisp/%s" ,pkg))))
 
-;; *Message* buffer should be writable in 24.4+
+           ;; *Message* buffer should be writable in 24.4+
 (defadvice switch-to-buffer (after switch-to-buffer-after-hack activate)
-  (if (string= "*Messages*" (buffer-name))
-      (read-only-mode -1)))
+               (if (string= "*Messages*" (buffer-name))
+                        (read-only-mode -1)))
 
 ;; @see https://www.reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/
-;; Normally file-name-handler-alist is set to
-;; (("\\`/[^/]*\\'" . tramp-completion-file-name-handler)
-;; ("\\`/[^/|:][^/|]*:" . tramp-file-name-handler)
-;; ("\\`/:" . file-name-non-special))
+            ;; Normally file-name-handler-alist is set to
+      ;; (("\\`/[^/]*\\'" . tramp-completion-file-name-handler)
+          ;; ("\\`/[^/|:][^/|]*:" . tramp-file-name-handler)
+                ;; ("\\`/:" . file-name-non-special))
 ;; Which means on every .el and .elc file loaded during start up, it has to runs those regexps against the filename.
-(let ((file-name-handler-alist nil))
-  (require-init 'init-autoload)
+                 (let ((file-name-handler-alist nil))
+                    (require-init 'init-autoload)
   (require-init 'init-modeline)
   ;; (require 'cl-lib) ; it's built in since Emacs v24.3
   (require-init 'init-compat)

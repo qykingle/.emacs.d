@@ -1,7 +1,21 @@
 ;(setq initial-frame-alist (quote ((fullscreen . maximized))))
 (set-face-attribute 'default nil :height 220)
 
+
+;;tern
+(add-hook 'js2-mode-hook (lambda ()
+                           (tern-mode)
+                           (company-mode)))
+
+
+;; or if you want to set it globaly
+(setq-default line-spacing 0.3)
+
 (setq ring-bell-function 'ignore)
+
+(setq helm-github-stars-username "qykingle")
+
+(setq helm-github-stars-refetch-time 0.5)
 
 ;;youdaoyun
 (setq url-automatic-caching t)

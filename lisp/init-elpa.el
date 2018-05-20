@@ -6,6 +6,10 @@
 ;; Feel free to add more packages!
 (defvar melpa-include-packages
   '(ace-mc
+    auto-complete
+    company-tern
+    yasnippet-snippets
+    helm-github-stars
     youdao-dictionary
     ranger
     reveal-in-osx-finder
@@ -189,6 +193,10 @@
 ;;------------------------------------------------------------------------------
 
 (require-package 'golden-ratio)
+(require-package 'company-tern)
+(require-package 'auto-complete)
+(require-package 'helm-github-stars)
+(require-package 'yasnippet-snippets)
 (require-package 'reveal-in-osx-finder)
 (require-package 'youdao-dictionary)
 (require-package 'hungry-delete)
