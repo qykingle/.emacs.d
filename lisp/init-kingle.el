@@ -1,4 +1,12 @@
 (set-face-attribute 'default nil :height 220)
+
+(defun insert-semicolon-end-fo-line ()
+"Add semicolon at the end of the line and return to current position"
+ (interactive)
+ (save-excursion
+   (end-of-line)
+   (insert ";")))
+
 ;;lispy
 (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
 (defun conditionally-enable-lispy ()
