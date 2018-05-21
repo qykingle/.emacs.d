@@ -657,6 +657,8 @@ If the character before and after CH is space or tab, CH is NOT slash"
        "ff" 'toggle-frame-maximized
        "bb" 'back-to-previous-buffer
        "kz" 'reveal-in-osx-finder
+       "kd" 'paredit-doublequote
+       "k;" 'paredit-
        "kg" 'helm-github-stars
        "ky" 'youdao-dictionary-search-at-point
        "1" 'select-window-1

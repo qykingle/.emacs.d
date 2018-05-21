@@ -6,6 +6,7 @@
 ;; Feel free to add more packages!
 (defvar melpa-include-packages
   '(ace-mc
+    lispy
     auto-complete
     company-tern
     yasnippet-snippets
@@ -193,6 +194,7 @@
 ;;------------------------------------------------------------------------------
 
 (require-package 'golden-ratio)
+(require-package 'lispy)
 (require-package 'company-tern)
 (require-package 'auto-complete)
 (require-package 'helm-github-stars)
