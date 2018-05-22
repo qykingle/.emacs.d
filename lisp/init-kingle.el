@@ -1,5 +1,7 @@
 (set-face-attribute 'default nil :height 220)
 
+(delete-selection-mode 1)
+
 (defun insert-semicolon-end-fo-line ()
 "Add semicolon at the end of the line and return to current position"
  (interactive)
