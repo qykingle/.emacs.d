@@ -662,6 +662,7 @@ If the character before and after CH is space or tab, CH is NOT slash"
        "k;" 'insert-semicolon-end-fo-line
        "kc" 'avy-goto-char
        "kg" 'helm-github-stars
+       "kw" 'web-mode-toggle-current-element-highlight
        "ky" 'youdao-dictionary-search-at-point
        "1" 'select-window-1
        "2" 'select-window-2

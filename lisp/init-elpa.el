@@ -8,6 +8,7 @@
   '(ace-mc
     lispy
     web-beautify
+    smartparens
     auto-complete
     company-tern
     yasnippet-snippets
@@ -195,6 +196,7 @@
 
 (require-package 'golden-ratio)
 (require-package 'web-beautify)
+(require-package 'smartparens)
 (require-package 'lispy)
 (require-package 'company-tern)
 (require-package 'auto-complete)
