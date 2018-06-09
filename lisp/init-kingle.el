@@ -1,5 +1,13 @@
 (set-face-attribute 'default nil :height 220)
 
+;(add-to-list 'load-path
+              ;"~/.emacs.d/snippets")
+;(require 'yasnippet)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"                 ;; personal snippets
+        ))
+(yas-global-mode 1)
+
 (delete-selection-mode 1)
 
 (defun insert-semicolon-end-fo-line ()
