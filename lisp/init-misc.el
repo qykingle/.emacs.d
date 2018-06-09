@@ -60,6 +60,7 @@
               grep-highlight-matches t
               grep-scroll-output t
               indent-tabs-mode nil
+              line-spacing 0
               mouse-yank-at-point t
               set-mark-command-repeat-pop t
               tooltip-delay 1.5
@@ -178,10 +179,7 @@
 
 ;; {{ which-key-mode
 (local-require 'which-key)
-(setq which-key-popup-type 'side-window)
-(setq which-key-side-window-location 'bottom)
-(setq which-key-side-window-max-width 0.33)
-;(setq which-key-allow-imprecise-window-fit t) ; performance
+(setq which-key-allow-imprecise-window-fit t) ; performance
 (setq which-key-separator ":")
 (which-key-mode 1)
 ;; }}
@@ -320,7 +318,7 @@ See \"Reusing passwords for several connections\" from INFO.
     (find-alternate-file (concat "/sudo:@127.0.0.1:"
                                  buffer-file-name))))
 
-(defadvice ido-find-file (after find-file-sudo activate)
+(defadvice counsel-find-file (after find-file-sudo activate)
   "Find file as root if necessary."
   (if (and (not (and buffer-file-name
                      (file-writable-p buffer-file-name)))
@@ -669,8 +667,7 @@ If no region is selected. You will be asked to use `kill-ring' or clipboard inst
         (write-region (car tmp) (cadr tmp) fb))
        (t
         ;; text from `kill-ring' or clipboard
-        (unless (featurep 'ido) (require 'ido))
-        (let* ((choice (ido-completing-read "Since no region selected, compare text in:"
+        (let* ((choice (completing-read "Since no region selected, compare text in:"
                                             '("kill-ring" "clipboard")))
                (txt (cond
                      ((string= choice "kill-ring")

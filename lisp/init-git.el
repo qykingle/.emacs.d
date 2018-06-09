@@ -53,7 +53,10 @@
 ;; people are forced use subversion or hg, so they take priority
 (custom-set-variables '(git-gutter:handled-backends '(svn hg git)))
 
-(git-gutter:linum-setup)
+(unless (fboundp 'global-display-line-numbers-mode)
+ ;; git-gutter's workaround for linum-mode bug.
+ ;; should not be used in `display-line-number-mode`
+ (git-gutter:linum-setup))
 
 (global-set-key (kbd "C-x C-g") 'git-gutter:toggle)
 (global-set-key (kbd "C-x v =") 'git-gutter:popup-hunk)
@@ -101,7 +104,7 @@
 (defvar git-svn--available-commands nil "Cached list of git svn subcommands")
 
 (defun git-svn (dir)
-  "Run git svn"
+  "Run git svn."
   (interactive "DSelect directory: ")
   (unless git-svn--available-commands
     (setq git-svn--available-commands
@@ -109,7 +112,7 @@
   (let* ((default-directory (vc-git-root dir))
          (compilation-buffer-name-function (lambda (major-mode-name) "*git-svn*")))
     (compile (concat "git svn "
-                     (ido-completing-read "git-svn command: " git-svn--available-commands nil t)))))
+                     (completing-read "git-svn command: " git-svn--available-commands nil t)))))
 
 (defun git-get-current-file-relative-path ()
   (replace-regexp-in-string (concat "^" (file-name-as-directory default-directory))
@@ -197,4 +200,3 @@
 ;; }}
 
 (provide 'init-git)
-
