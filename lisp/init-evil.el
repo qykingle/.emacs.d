@@ -663,7 +663,7 @@ If the character before and after CH is space or tab, CH is NOT slash"
        "kc" 'avy-goto-char
        "kg" 'helm-github-stars
        "kw" 'web-mode-toggle-current-element-highlight
-       "ky" 'youdao-dictionary-search-at-point
+       "ky" 'youdao-dictionary-search-at-point+
        "1" 'select-window-1
        "2" 'select-window-2
        "3" 'select-window-3

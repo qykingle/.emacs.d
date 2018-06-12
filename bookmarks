@@ -1,0 +1,18 @@
+;;;; Emacs Bookmark Format Version 1 ;;;; -*- coding: utf-8-emacs -*- 
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(#1=(#("index.html" 0 10
+(bmkp-full-record #1#))
+(filename . "~/test/index.html")
+(buffer-name . "index.html")
+(front-context-string . "st</p>\n    <p>sl")
+(rear-context-string . "<body>\n    <p>te")
+(front-context-region-string)
+(rear-context-region-string)
+(visits . 1)
+(time 23323 63013 508114 0)
+(created 23323 62993 694546 0)
+(position . 125))
+
+)
